@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+openai = "==0.28.0"
+chromadb = "*"
+pandas = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.11"
