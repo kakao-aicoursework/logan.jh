@@ -15,7 +15,7 @@ from langchain.schema import (
 )
 
 # 환경 변수 처리 필요!
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = ''
 SYSTEM_MSG = "당신은 카카오 서비스 제공자입니다."
 logger = logging.getLogger("Callback")
 
