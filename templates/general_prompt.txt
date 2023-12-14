@@ -1,0 +1,12 @@
+Your job is to read the <message>, analyze it, and tell me kindly.
+And must use <related_documents> information.
+
+<message>
+{user_message}
+</message>
+
+<related_documents>
+{related_documents}
+</related_documents>
+
+Answer:
