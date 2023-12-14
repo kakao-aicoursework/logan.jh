@@ -4,9 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+requests = "*"
 openai = "==0.28.0"
 chromadb = "*"
 pandas = "*"
+langchain = "*"
+fastapi = "==0.100.0"
+uvicorn = "==0.22.0"
+gunicorn = "==20.1.0"
+tiktoken = "*"
 
 [dev-packages]
 

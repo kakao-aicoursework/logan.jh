@@ -1,4 +1,5 @@
 import logging
+import uvicorn
 from api import app
 
 logging.basicConfig(
@@ -8,4 +9,4 @@ logging.basicConfig(
 )
 
 if __name__ == "__main__":
-    pass
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
