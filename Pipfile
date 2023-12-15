@@ -13,6 +13,7 @@ fastapi = "==0.100.0"
 uvicorn = "==0.22.0"
 gunicorn = "==20.1.0"
 tiktoken = "*"
+unstructured = "*"
 
 [dev-packages]
 

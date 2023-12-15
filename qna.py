@@ -3,10 +3,10 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import ChatPromptTemplate
 
 import data
+import history
 from util import read_from_file
 from data import query_db
 from data import client_dict
-
 
 GENERAL_PROMPT_TEMPLATE_PATH = "templates/general_prompt.txt"
 INTENT_PROMPT_TEMPLATE_PATH = "templates/parse_intent.txt"
@@ -38,10 +38,12 @@ parse_intent_chain = create_chain(
 default_chain = ConversationChain(llm=chat_model, output_key="text")
 
 
-def gernerate_answer(user_message) -> dict[str, str]:
+def gernerate_answer(user_message, conversation_id: str = 'fa1010') -> dict[str, str]:
+    history_file = history.load_conversation_history(conversation_id)
     context = dict(user_message=user_message)
     context["input"] = context["user_message"]
     context["intent_list"] = INTENT_LIST_TXT
+    context["chat_history"] = history.get_chat_history(conversation_id)
 
     # intent = parse_intent_chain(context)["intent"]
     intent = parse_intent_chain.run(context)
@@ -52,9 +54,7 @@ def gernerate_answer(user_message) -> dict[str, str]:
     else:
         answer = default_chain.run(context["user_message"])
 
+    history.log_user_message(history_file, user_message)
+    history.log_bot_message(history_file, answer)
+
     return {"answer": answer}
-
-
-
-
-
