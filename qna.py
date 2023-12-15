@@ -2,7 +2,7 @@ from langchain.chains import ConversationChain, LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import ChatPromptTemplate
 
-import qna
+import data
 from util import read_from_file
 from data import query_db
 from data import client_dict
@@ -46,7 +46,7 @@ def gernerate_answer(user_message) -> dict[str, str]:
     # intent = parse_intent_chain(context)["intent"]
     intent = parse_intent_chain.run(context)
 
-    if intent in qna.client_dict.keys():
+    if intent in data.client_dict.keys():
         context["related_documents"] = query_db(client_dict.get(intent), query=context["user_message"])
         answer = general_prompt_chain.run(context)
     else:
